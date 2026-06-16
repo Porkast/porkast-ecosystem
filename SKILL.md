@@ -1,6 +1,6 @@
 ---
 name: porkast-ecosystem
-description: Porkast full stack projects relationship map and architecture overview. Use when working on frontend, backend, and mobile projects for full stack development to understand how porkast-next-app (Web platform), porkast-svc (Backend service), porkast-tele-mini-app (Telegram mini app), and porkast-ios (iOS app) interact.
+description: Porkast full stack projects relationship map and architecture overview. Use when working on frontend, backend, and mobile projects for full stack development to understand how porkast-web-app (Web platform), porkast-svc (Backend service), porkast-tele-mini-app (Telegram mini app), and porkast-ios (iOS app) interact.
 ---
 
 # Porkast Ecosystem Relationship Map
@@ -22,11 +22,11 @@ This skill provides an overview of the Porkast full-stack projects, their relati
 ## Projects Overview
 
 ### `porkast-svc` (Backend Service)
-- **Feature:** Core backend REST API service built with Bun, Hono, and PostgreSQL. Handles podcast RSS processing, Telegram bot webhook/polling, email notifications, and scheduled background jobs.
-- **Relies on:** PostgreSQL Database, Third-party APIs (Resend, Telegram).
-- **Relied upon by:** `porkast-tele-mini-app`, `porkast` (iOS app), and `porkast-next-app`.
+- **Feature:** Core backend REST API service running on Cloudflare Workers with Hono. Handles podcast RSS processing, Telegram bot integration, email notifications, and scheduled background jobs via Cloudflare Queues and Cron Triggers.
+- **Relies on:** Cloudflare D1 (SQLite via Drizzle ORM), Cloudflare KV, Cloudflare Queues, Third-party APIs (Resend, Telegram).
+- **Relied upon by:** `porkast-tele-mini-app`, `porkast` (iOS app), and `porkast-web-app`.
 
-### `porkast-next-app` (Web Platform)
+### `porkast-web-app` (Web Platform)
 - **Feature:** Full-stack Web application for personalized podcast discovery, built with Next.js 14, React, Tailwind CSS, and Prisma. Contains Next.js API routes and Custom Email OTP auth.
 - **Relies on:** PostgreSQL Database (shared or direct access). Uses `porkast-svc` for asynchronous Telegram bot integration and RSS background jobs.
 
@@ -36,10 +36,10 @@ This skill provides an overview of the Porkast full-stack projects, their relati
 
 ### `porkast-ios` (iOS App)
 - **Feature:** Native iOS mobile application built with SwiftUI and Swift 5.9+. Uses an Observable pattern architecture for state management.
-- **Relies on:** Backend REST APIs provided by `porkast-svc` and/or `porkast-next-app`.
+- **Relies on:** Backend REST APIs provided by `porkast-svc` and/or `porkast-web-app`.
 
 ## Project Relationship Map
 
-- **Core Backend:** `porkast-svc` is the central hub for data processing (RSS, Telegram Bot, Background Jobs) and serves APIs to the mini app and iOS app.
-- **Web Frontend/BFF:** `porkast-next-app` is a robust full-stack app that directly queries the database via Prisma but offloads Telegram-specific or heavy scheduled RSS tasks to `porkast-svc`.
+- **Core Backend:** `porkast-svc` (Cloudflare Workers) is the central hub for data processing (RSS, Telegram Bot, Background Jobs) and serves APIs to the mini app, iOS app, and web app.
+- **Web Frontend/BFF:** `porkast-web-app` is a robust full-stack app that directly queries the database via Prisma but offloads Telegram-specific or heavy scheduled RSS tasks to `porkast-svc`.
 - **Pure Frontends:** Both `porkast-tele-mini-app` and `porkast-ios` (iOS) are frontend clients that rely entirely on the backend APIs (`porkast-svc`) for data and authentication.

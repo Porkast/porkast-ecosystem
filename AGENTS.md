@@ -6,7 +6,7 @@ What matters (high-signal rules)
 - Install the skill using the provided installer: `./install.sh` (it creates symlinks into agent skill dirs).
   - If the installer refuses to overwrite a path, remove the existing path yourself and re-run the script.
   - After installing, reload/restart your agent session (OpenCode: restart session; Claude/Gemini: see install output).
-- This repository only maps multiple *other* repos (porkast-svc, porkast-next-app, porkast-tele-mini-app, porkast-ios). Those are separate GitHub repos at `github.com/Porkast/{project}` and may not be cloned locally. Do not assume local code exists — read each project's AGENTS.md / README.md in that repo.
+- This repository only maps multiple *other* repos (porkast-svc, porkast-web-app, porkast-tele-mini-app, porkast-ios). Those are separate GitHub repos at `github.com/Porkast/{project}` and may not be cloned locally. Do not assume local code exists — read each project's AGENTS.md / README.md in that repo.
 - Environment helper: if you need local paths for Porkast projects, check `PORKAST_PROJECT_PATH` (default: `~/Porkast`) as described in SKILL.md.
 
 Branching and edits

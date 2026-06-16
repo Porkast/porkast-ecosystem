@@ -15,7 +15,7 @@ Quick install
    - Gemini CLI: run `/skills reload`
 
 Important notes for contributors and agents
-- This repo does NOT contain the app code. The actual projects live at `github.com/Porkast/{project}` (for example, `porkast-svc`, `porkast-next-app`, `porkast-tele-mini-app`, `porkast-ios`). Do not assume those repositories are cloned locally.
+- This repo does NOT contain the app code. The actual projects live at `github.com/Porkast/{project}` (for example, `porkast-svc`, `porkast-web-app`, `porkast-tele-mini-app`, `porkast-ios`). Do not assume those repositories are cloned locally.
 - If you need local project paths, check the `PORKAST_PROJECT_PATH` environment variable; default is `~/Porkast`.
 - Branching: do NOT make changes on `main` or `master`. Use the `dev` branch for edits. Create it if missing: `git switch -c dev`.
 - This repo has no build/test/package scripts. Don't run `npm`, `pnpm`, or other language-specific toolchains here — follow each project's README for build/test instructions.
