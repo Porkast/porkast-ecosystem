@@ -4,7 +4,7 @@ This repository is a tiny "skill" / meta-repo that documents the Porkast project
 
 Quick summary
 - Primary content: `SKILL.md` (authoritative overview of the Porkast ecosystem).
-- Installer: `./install.sh` — creates symlinks into agent skill directories (`~/.config/opencode/skills/`, `~/.claude/skills/`, `~/.gemini/skills/`).
+- Installer: `./install.sh` — creates symlinks into agent skill directories (`~/.config/opencode/skills/`, `~/.claude/skills/`, `~/.gemini/skills/`, `~/.dsh/skills/`). The DeepSeek Harness (dsh) directory is `$DSH_HOME/skills` when `DSH_HOME` is set, otherwise `~/.dsh/skills`.
 
 Quick install
 1. Run the installer: `./install.sh`
@@ -13,6 +13,7 @@ Quick install
    - OpenCode: restart the session or reopen the project
    - Claude Code: run `/skills`
    - Gemini CLI: run `/skills reload`
+   - DeepSeek Harness (DSH): restart the dsh session (skills load at session start)
 
 Important notes for contributors and agents
 - This repo does NOT contain the app code. The actual projects live at `github.com/Porkast/{project}` (for example, `porkast-svc`, `porkast-web-app`, `porkast-tele-mini-app`, `porkast-ios`). Do not assume those repositories are cloned locally.

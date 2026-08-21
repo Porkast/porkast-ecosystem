@@ -4,6 +4,8 @@ set -euo pipefail
 SKILL_NAME="porkast-ecosystem"
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_FILE="$SCRIPT_DIR/SKILL.md"
+# DeepSeek Harness (dsh) home; overridable via DSH_HOME, defaults to ~/.dsh
+DSH_HOME="${DSH_HOME:-$HOME/.dsh}"
 
 if [[ ! -f "$SKILL_FILE" ]]; then
   printf 'Missing skill file: %s\n' "$SKILL_FILE" >&2
@@ -37,8 +39,10 @@ install_link() {
 install_link "OpenCode" "$HOME/.config/opencode/skills/$SKILL_NAME"
 install_link "Claude Code" "$HOME/.claude/skills/$SKILL_NAME"
 install_link "Gemini CLI" "$HOME/.gemini/skills/$SKILL_NAME"
+install_link "DeepSeek Harness (DSH)" "$DSH_HOME/skills/$SKILL_NAME"
 
 printf '\nReload or reopen your agent after installation:\n'
 printf -- '- OpenCode: restart the session or reopen the project\n'
 printf -- '- Claude Code: run /skills\n'
 printf -- '- Gemini CLI: run /skills reload\n'
+printf -- '- DeepSeek Harness (DSH): restart the dsh session (skills are loaded at session start)\n'
